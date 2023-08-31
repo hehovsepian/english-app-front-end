@@ -1,36 +1,46 @@
 import Sidebar from "../global/Sidebar"
 import Header from "../global/Header"
 import Home from "../home/Home"
+import Courses from "../courses/Courses"
 import styled from 'styled-components';
 
-const Page = styled.div`
+
+const Main = styled.div`
     background-color: white;
     width:100%;
     border-radius: 32px 0 0 0;
-    min-height:100vh;
+    height:100vh;
+    overflow:auto;
 `
 
 interface PageWrapperProps {
-    page: string;
+    page: "home" | "courses";
 }
 
 function PageWrapper({ page }: PageWrapperProps){
 
-    const getPage = (page:string) => {
-        if(page === "home"){
-            return <Home/>
-        }
+    const getPage = () => {
+        switch(page) {
+            case "home":
+              return <Home/>
+              break;
+            case "courses":
+                return <Courses/>
+              break;
+            default:
+                return <Home/>
+          }
     }
 
 
     return <>
         <Sidebar/>
-        <Page>
+        <Main>
             <Header/>
             <main>
-                {getPage(page)}
+                {getPage()}
             </main>
-        </Page>
+        </Main>
     </>
 }
 

@@ -51,7 +51,8 @@ function Sidebar(){
             data.map((item, index)=>{
                 return (
                     <Link
-                        to={`/${item.name}`}
+                        key={index}
+                        to={`/${item.name.toLowerCase()}`}
                         className={location === item.name.toLowerCase() ? 'active' : ''}
                     >
                         <i className={`fa-solid fa-${item.icon}`}></i>

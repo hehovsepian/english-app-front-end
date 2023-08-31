@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { signin } from '../../redux/authSlice'
-import { PrimaryButton } from "../global/GlobalStyles"
+import { Button } from "../global/GlobalStyles"
 
 const AuthPage = styled.div`
     width:100%;
+    color:white;
 `
 
 const Form = styled.form`
@@ -30,16 +31,22 @@ const Input = styled.div`
     }
 `
 
+const SignInButton = styled(Button)`
+    width:100%
+`
+
 function SignIn(){
 
+    const dispatch = useDispatch()
     const signedin = useSelector((state: RootState) => state.auth.signedin)
 
     useEffect(()=>{
         console.log(signedin)
     },[])
 
-    const handleSubmitSignin = () => {
-
+    const handleSubmitSignin = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        dispatch(signin())
     }
 
     return (
@@ -63,12 +70,12 @@ function SignIn(){
                     />
                 </Input>
                 <p>or <a className='gradient-text'>create an account</a></p>
-                <PrimaryButton
+                <SignInButton
                     $primary
                     type="submit"
                 >
                     Sign In
-                </PrimaryButton>
+                </SignInButton>
             </Form>
         </AuthPage>
     )
