@@ -18,6 +18,7 @@ export interface Filter{
 const filterData = [
     {
         title: 'Native language',
+        key: 'nativeLanguage',
         options: [
             'German',
             'Mandarin',
@@ -25,6 +26,18 @@ const filterData = [
             'Spanish',
             'Turkish',
             'Ukrainian'
+        ]
+    },
+    {
+        title: 'Country of residence',
+        key: 'country',
+        options: [
+            'Brazil',
+            'China',
+            'Germany',
+            'Spain',
+            'Turkey',
+            'Ukraine'
         ]
     }
 ]
@@ -79,14 +92,15 @@ const DirectoryPage = styled.div`
 `
 
 const FilterList = styled.div`
-
+    display:flex;
+    flex-direction:column;
+    gap:24px;
 `
 
 const Filter = styled.div`
     border: 1px solid #DDE3EE;
     background: #FEFEFE;
     width:240px;
-    min-height:350px;
     padding:24px;
     fieldset{
         border:none;
@@ -94,9 +108,14 @@ const Filter = styled.div`
         margin-inline-end: 0;
         padding-block-start: 0;
         padding-inline-start: 0;
+        padding-inline-end: 0;
+        padding-block-end: 0;
         span{
             display:block;
             margin:16px 0;
+            &:last-of-type{
+                margin-bottom:0;
+            }
         }
     }
 `
@@ -114,6 +133,7 @@ const StudentCard = styled.div`
    color:white;
    padding:24px;
    width:300px;
+   max-height:306px;
    border-radius:8px;
    text-align:center;
    cursor:pointer;
@@ -166,29 +186,32 @@ function Students(){
     const [filterParams, setFilterParam] = useState<string[]>([]);
 
     useEffect(()=>{
-        (searchStudents(students))
-    },[searchTerm])
+        filterStudents(searchStudents(students))
+    },[searchTerm, filterParams])
 
     const searchStudents = (items:Student[]) =>  {
         return items.filter((item) => {
-            if (filterParams.includes(item.nativeLanguage)) {
-                return searchParam.some(() => {
-                    return (
-                        item.name
-                            .toString()
-                            .toLowerCase()
-                            .indexOf(searchTerm.toLowerCase()) > -1
-                    );
-                });
-            } else if (filterParams.length === 0) {
-                return searchParam.some(() => {
-                    return (
-                        item.name
-                            .toString()
-                            .toLowerCase()
-                            .indexOf(searchTerm.toLowerCase()) > -1
-                    );
-                });
+            return (
+                item.name
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(searchTerm.toLowerCase()) > -1
+            );
+        });
+    }
+
+    let count = 0
+
+    const filterStudents = (items:Student[]) =>  {
+        return items.filter((item) => {
+            if(filterParams.length > 0){
+                for(let i = 0; i < filterData.length; i++){
+                    if(filterParams.includes(item[filterData[i].key as keyof Student])){
+                        return item
+                    }
+                }
+            }else{
+                return item
             }
         });
     }
@@ -259,7 +282,7 @@ function Students(){
             </FilterList>
             <StudentCardList>
                 {
-                    searchStudents(students).map((student, index)=>{
+                    filterStudents(searchStudents(students)).map((student, index)=>{
                         return(
                             <StudentCard key={index}>
                                     <img
