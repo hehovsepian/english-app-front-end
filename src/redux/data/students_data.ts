@@ -2,13 +2,22 @@ import carlosMachado from '../../images/studentPhotos/Carlos_Machado.png'
 import yinGuo from '../../images/studentPhotos/Yin_Guo.png'
 import nadjaSaller from '../../images/studentPhotos/Nadja_Saller.png'
 
+enum NativeLanguages {
+    german = 'German',
+    mandarin = 'Mandarin',
+    portuguese = 'Portuguese',
+    spanish = 'Spanish',
+    turkish = 'Turkish',
+    ukrainian = 'Ukrainian'
+  }
+
 export interface Student {
     profilePhoto: string,
     name: string,
     location: string,
     level: string,
     course: string,
-    nativeLanguage: string,
+    nativeLanguage: NativeLanguages
 }
 
 export const students = [
@@ -18,7 +27,7 @@ export const students = [
         location: 'Madrid, Spain',
         level: 'C1',
         course: 'C1 General English',
-        nativeLanguage: "Spanish"
+        nativeLanguage: NativeLanguages.spanish
     },
     {
         profilePhoto: yinGuo,
@@ -26,7 +35,7 @@ export const students = [
         location: 'Beijing, China',
         level: 'A2',
         course: 'A2 General English',
-        nativeLanguage: "Mandarin"
+        nativeLanguage: NativeLanguages.mandarin
     },
     {
         profilePhoto: nadjaSaller,
@@ -34,6 +43,6 @@ export const students = [
         location: 'Berlin, Germany',
         level: 'B1',
         course: 'B1 General English',
-        nativeLanguage: "German"
+        nativeLanguage: NativeLanguages.german
     }
 ]

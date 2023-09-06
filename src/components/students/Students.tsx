@@ -169,17 +169,6 @@ function Students(){
         (searchStudents(students))
     },[searchTerm])
 
-    // const searchStudents = (items:Student[]) => {
-    //     return items.filter((item) => {
-    //         return (
-    //             item.name
-    //                 .toString()
-    //                 .toLowerCase()
-    //                 .indexOf(searchTerm.toLowerCase()) > -1
-    //         );
-    //     });
-    // }
-
     const searchStudents = (items:Student[]) =>  {
         return items.filter((item) => {
             if (filterParams.includes(item.nativeLanguage)) {
@@ -206,13 +195,11 @@ function Students(){
 
     const handleFilterSelect = (e:React.ChangeEvent<HTMLInputElement>) => {
         let checked = e.target.checked
-        // console.log(e.target.checked)
         if(checked){
             setFilterParam((prevState)=>{
                 return [...prevState, e.target.value]
             });
         }else{
-            console.log(checked)
             setFilterParam((prevState)=>{
                 let newState = [...prevState]
                 newState.splice(newState.indexOf(e.target.value), 1)
