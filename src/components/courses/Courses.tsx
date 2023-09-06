@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Page, Button } from "../global/GlobalStyles"
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
+import { Course } from "../../redux/data/courses_data"
 
 //images
 import search from "../../images/icons/search-white.svg"
@@ -10,11 +12,11 @@ import star from "../../images/icons/star.svg"
 
 const PageActions = styled.div`
     width:100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    // display: flex;
+    // align-items: flex-start;
+    // justify-content: space-between;
     margin-bottom:32px;
-    padding-right:24px;
+    // padding-right:24px;
 `
 
 const SearchBar = styled.div`
@@ -23,6 +25,7 @@ const SearchBar = styled.div`
         border: 1px solid var(--ui-elements-border-01, #DFE1E1);
         background: var(--ui-elements-field, #FFF);
         height: 48px;
+        width:100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -79,23 +82,59 @@ function Courses(){
 
     const courses = useSelector((state: RootState) => state.courses)
 
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchParam] = useState(["name"]);
+
+    useEffect(()=>{
+        (searchCourses(courses))
+    },[searchTerm])
+
+    const searchCourses = (items:Course[]) => {
+        return items.filter((item) => {
+            //if (item.region == filterParam) {
+                // return searchParam.some((newItem) => {
+                    return (
+                        item.name
+                            .toString()
+                            .toLowerCase()
+                            .indexOf(searchTerm.toLowerCase()) > -1
+                    );
+                // });
+            //} 
+            // else if (filterParam == "All") {
+            //     return searchParam.some((newItem) => {
+            //         return (
+            //             item[newItem]
+            //                 .toString()
+            //                 .toLowerCase()
+            //                 .indexOf(q.toLowerCase()) > -1
+            //         );
+            //     });
+            // }
+        });
+    }
+
     return <Page>
         <h1>Courses</h1>
         <PageActions>
             <SearchBar>
-                <input type="search" placeholder="Search..."/>
+                <input 
+                    type="search"
+                    placeholder="Search..."
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 <button>
                     <img src={search}/>
                 </button>
             </SearchBar>
-            <Button>
+            {/* <Button>
                 Filter
                 <img src={filter} className="icon-right"/>
-            </Button>
+            </Button> */}
         </PageActions>
         <CourseCardList>
             {
-                courses?.map((course, index)=>{
+                searchCourses(courses).map((course, index)=>{
                     return(
                         <CourseCard key={index}>
                              <button className="star">

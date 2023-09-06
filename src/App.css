@@ -1,5 +1,6 @@
 :root{
   --blue-gradient-vertical: linear-gradient(172deg, #0CD6CB 0%, #597FFF 100%);
+  --primary-font-family: 'Open Sans';
 }
 
 *{
@@ -7,7 +8,7 @@
 }
 
 body{
-  /* color:white; */
+  font-family: var(--primary-font-family), sans-serif;
 }
 
 .App{

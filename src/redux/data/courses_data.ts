@@ -7,6 +7,7 @@ export interface Course {
     startTime: string, 
     endTime: string,
     book: string,
+    instructor: string,
     lessons: Lesson[]
 }
 
@@ -18,7 +19,7 @@ export interface Lesson {
 
 export const courses = [
     {
-        name: "A1 General English(Young learners)",
+        name: "A1 General English (Young learners)",
         students: [
             "Hannah Hovsepian"
         ],
@@ -26,6 +27,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: "Speakout A1",
+        instructor: "Márcia de Silva",
         lessons: [
             {
                 name:"lesson1",
@@ -42,6 +44,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: "Roadmap A1",
+        instructor: "Márcia de Silva",
         lessons: [
             {
                 name:"lesson1",
@@ -58,6 +61,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: " Speakout B1+",
+        instructor: "Márcia de Silva",
         lessons: [
             {
                 name:"lesson1",

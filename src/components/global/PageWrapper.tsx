@@ -2,6 +2,7 @@ import Sidebar from "../global/Sidebar"
 import Header from "../global/Header"
 import Home from "../home/Home"
 import Courses from "../courses/Courses"
+import Students from "../students/Students"
 import styled from 'styled-components';
 
 
@@ -14,7 +15,7 @@ const Main = styled.div`
 `
 
 interface PageWrapperProps {
-    page: "home" | "courses";
+    page: "home" | "courses" | "students";
 }
 
 function PageWrapper({ page }: PageWrapperProps){
@@ -26,6 +27,9 @@ function PageWrapper({ page }: PageWrapperProps){
               break;
             case "courses":
                 return <Courses/>
+              break;
+            case "students":
+                return <Students/>
               break;
             default:
                 return <Home/>
