@@ -9,13 +9,14 @@ import { Student } from "../../redux/data/students_data"
 import search from "../../images/icons/search-white.svg"
 import location from "../../images/icons/location-teal.svg"
 
-//filter data
-export interface Filter{
+// filter data
+type Filter = {
     title: string,
+    key: string,
     options: string[]
 }
 
-const filterData = [
+const filterData:Filter[] = [
     {
         title: 'Native language',
         key: 'nativeLanguage',
@@ -26,6 +27,15 @@ const filterData = [
             'Spanish',
             'Turkish',
             'Ukrainian'
+        ]
+    },
+    {
+        title: 'Teacher',
+        key: 'instructor',
+        options: [
+            'Márcia de Silva',
+            'Steven Peters',
+            'Ximena Flora',
         ]
     },
     {
@@ -131,9 +141,8 @@ const StudentCardList = styled.ul`
 const StudentCard = styled.div`
    background: #122142;    
    color:white;
-   padding:24px;
+   padding:36px 24px;
    width:300px;
-   max-height:306px;
    border-radius:8px;
    text-align:center;
    cursor:pointer;

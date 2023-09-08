@@ -1,8 +1,12 @@
+import { Instructors } from "../data/courses_data"
+
+
+//images
 import carlosMachado from '../../images/studentPhotos/Carlos_Machado.png'
 import yinGuo from '../../images/studentPhotos/Yin_Guo.png'
 import nadjaSaller from '../../images/studentPhotos/Nadja_Saller.png'
 
-enum Countries {
+export enum Countries {
     brazil = 'Brazil',
     china = 'China',
     germany = 'Germany',
@@ -11,7 +15,7 @@ enum Countries {
     ukraine= 'Ukraine'
 }
 
-enum NativeLanguages {
+export enum NativeLanguages {
     german = 'German',
     mandarin = 'Mandarin',
     portuguese = 'Portuguese',
@@ -27,17 +31,19 @@ export interface Student {
     country: Countries,
     level: string,
     course: string,
+    instructor: Instructors,
     nativeLanguage: NativeLanguages
 }
 
-export const students = [
+export const students:Student[] = [
     {
         profilePhoto: carlosMachado,
         name: 'Carlos Machado',
         location: 'Madrid, Spain',
         country: Countries.spain,
-        level: 'C1',
-        course: 'C1 General English',
+        level: 'A1',
+        course: 'A1 General English (Young learners)',
+        instructor: Instructors.marcia,
         nativeLanguage: NativeLanguages.spanish
     },
     {
@@ -45,8 +51,9 @@ export const students = [
         name: 'Yin Guo',
         location: 'Beijing, China',
         country: Countries.china,
-        level: 'A2',
-        course: 'A2 General English',
+        level: 'A1',
+        course: 'A1 General English (Adults)',
+        instructor: Instructors.steven,
         nativeLanguage: NativeLanguages.mandarin
     },
     {
@@ -54,8 +61,9 @@ export const students = [
         name: 'Nadja Saller',
         location: 'Berlin, Germany',
         country: Countries.germany,
-        level: 'B1',
-        course: 'B1 General English',
+        level: 'B1+',
+        course: 'B1+ General English (Adults)',
+        instructor: Instructors.ximena,
         nativeLanguage: NativeLanguages.german
     }
 ]

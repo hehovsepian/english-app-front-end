@@ -1,5 +1,11 @@
 import getCourseDates from '../../utils/getCourseDates'
 
+export enum Instructors {
+    marcia = 'Márcia de Silva',
+    steven = 'Steven Peters',
+    ximena = 'Ximena Flora',
+}
+
 export interface Course {
     name: string,
     students: string[],
@@ -17,7 +23,7 @@ export interface Lesson {
 
 }
 
-export const courses = [
+export const courses:Course[]  = [
     {
         name: "A1 General English (Young learners)",
         students: [
@@ -27,7 +33,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: "Speakout A1",
-        instructor: "Márcia de Silva",
+        instructor: Instructors.marcia,
         lessons: [
             {
                 name:"lesson1",
@@ -44,7 +50,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: "Roadmap A1",
-        instructor: "Márcia de Silva",
+        instructor: Instructors.steven,
         lessons: [
             {
                 name:"lesson1",
@@ -61,7 +67,7 @@ export const courses = [
         startTime: '11:00',
         endTime: '12:30',
         book: " Speakout B1+",
-        instructor: "Márcia de Silva",
+        instructor: Instructors.ximena,
         lessons: [
             {
                 name:"lesson1",
