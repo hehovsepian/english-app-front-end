@@ -51,7 +51,7 @@ function SignIn(){
 
     return (
         <AuthPage>
-            <Form onSubmit={handleSubmitSignin}>
+            {/* <Form onSubmit={handleSubmitSignin}>
                 <h1>Hi there!</h1>
                 <Input>
                     <label htmlFor="email">Email</label>
@@ -76,7 +76,9 @@ function SignIn(){
                 >
                     Sign In
                 </SignInButton>
-            </Form>
+            </Form> */}
+            <h1>Sign in</h1>
+            <a className="button google" style={{color:'white'}} href="/auth/google">Sign in with Google</a>
         </AuthPage>
     )
 }
