@@ -190,8 +190,8 @@ function Students(){
 
     const students = useSelector((state: RootState) => state.students)
 
-    const [searchTerm, setSearchTerm] = useState('')
-    const [searchParam] = useState(["name"]);
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [searchParam] = useState<string[]>(["name"]);
     const [filterParams, setFilterParam] = useState<string[]>([]);
 
     useEffect(()=>{

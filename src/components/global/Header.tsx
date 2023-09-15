@@ -79,7 +79,7 @@ function Header(){
 
 	const navigate = useNavigate();
 
-	const [showAvatarMenu, setShowAvatarMenu] = useState(false)
+	const [showAvatarMenu, setShowAvatarMenu] = useState<boolean>(false)
 
     const user = {
         firstName: "Hannah",

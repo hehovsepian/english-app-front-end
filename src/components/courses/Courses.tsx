@@ -82,8 +82,8 @@ function Courses(){
 
     const courses = useSelector((state: RootState) => state.courses)
 
-    const [searchTerm, setSearchTerm] = useState('')
-    const [searchParam] = useState(["name"]);
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [searchParam] = useState<string[]>(["name"]);
 
     useEffect(()=>{
         (searchCourses(courses))

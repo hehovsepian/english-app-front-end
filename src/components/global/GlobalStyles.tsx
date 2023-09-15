@@ -5,7 +5,7 @@ export const Page = styled.div`
     padding: 40px;
 `
 
-export const Button = styled.button <{ $primary?: boolean; }>`
+export const Button = styled.button <{ $primary?: boolean, $disabled?: boolean}>`
     border: ${props => props.$primary ? "none" : "1px solid black"};
     background: ${props => props.$primary ? "linear-gradient(141deg, #0CD6CB 0%, #597FFF 100%)" : "white"};
     color: ${props => props.$primary ? "white" : "black"};
@@ -18,6 +18,7 @@ export const Button = styled.button <{ $primary?: boolean; }>`
     display:flex;
     align-items:center;
     justify-content:center;
+    opacity: ${props => props.$disabled ? "0.5" : "1"};
     .icon-right{
         margin-left:8px;
     }

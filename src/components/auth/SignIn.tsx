@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
@@ -38,20 +39,19 @@ const SignInButton = styled(Button)`
 function SignIn(){
 
     const dispatch = useDispatch()
-    const signedin = useSelector((state: RootState) => state.auth.signedin)
+    const navigate = useNavigate();
 
-    useEffect(()=>{
-        console.log(signedin)
-    },[])
+    const signedin = useSelector((state: RootState) => state.auth.signedin)
 
     const handleSubmitSignin = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(signin())
+        navigate("/onboarding?step=1");
     }
 
     return (
         <AuthPage>
-            {/* <Form onSubmit={handleSubmitSignin}>
+            <Form onSubmit={handleSubmitSignin}>
                 <h1>Hi there!</h1>
                 <Input>
                     <label htmlFor="email">Email</label>
@@ -76,9 +76,7 @@ function SignIn(){
                 >
                     Sign In
                 </SignInButton>
-            </Form> */}
-            <h1>Sign in</h1>
-            <a className="button google" style={{color:'white'}} href="/auth/google">Sign in with Google</a>
+            </Form>
         </AuthPage>
     )
 }

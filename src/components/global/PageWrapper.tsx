@@ -1,9 +1,14 @@
+import { useEffect } from "react"
 import Sidebar from "../global/Sidebar"
 import Header from "../global/Header"
 import Home from "../home/Home"
 import Courses from "../courses/Courses"
 import Students from "../students/Students"
+import { Navigate } from "react-router-dom";
 import styled from 'styled-components';
+import type { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 
 const Main = styled.div`
@@ -15,10 +20,16 @@ const Main = styled.div`
 `
 
 interface PageWrapperProps {
-    page: "home" | "courses" | "students";
+    page: "home" | "courses" | "students",
 }
 
 function PageWrapper({ page }: PageWrapperProps){
+
+    const signedin = useSelector((state: RootState) => state.auth.signedin)
+
+    useEffect(()=>{
+        console.log(signedin)
+    },[])
 
     const getPage = () => {
         switch(page) {
@@ -36,16 +47,24 @@ function PageWrapper({ page }: PageWrapperProps){
           }
     }
 
-
-    return <>
-        <Sidebar/>
-        <Main>
-            <Header/>
-            <main>
-                {getPage()}
-            </main>
-        </Main>
-    </>
+    if(signedin === true){
+        return (
+            <>
+                <Sidebar/>
+                <Main>
+                    <Header/>
+                    <main>
+                        {getPage()}
+                    </main>
+                </Main>
+            </>
+        )
+    }else{
+     return (
+        <Navigate to="/signin" />
+        )
+    }
+    
 }
 
 export default PageWrapper
