@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { interests} from "./data/interests_data"
 
-export interface InterestsState {
-    interests: string[],
-    selectedInterests: string[] | null
-  }
-  
-  const initialState: InterestsState = {
-    interests: interests, 
-    selectedInterests: null
-  }
+interface InterestsState {
+  interests: string[],
+  selectedInterests: string[] | null
+}
+
+const initialState: InterestsState = {
+  interests: interests, 
+  selectedInterests: null
+}
 
 export const interestsSlice = createSlice({
   name: 'interests',

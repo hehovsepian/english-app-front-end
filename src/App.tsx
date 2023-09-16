@@ -14,6 +14,7 @@ function App() {
                   <Route path="/home" element={<PageWrapper page="home"/>} />
                   <Route path="/courses" element={<PageWrapper page="courses"/>} />
                   <Route path="/students" element={<PageWrapper page="students"/>} />
+                  <Route path="/profile" element={<PageWrapper page="profile"/>} />
                 </Routes>
             </Router>
         </div>

@@ -195,7 +195,7 @@ function Home(){
     return (
         <>
             <HeroBanner>
-                    <h1>Welcome back, Márcia!</h1>
+                    <h1>Welcome back, Rico!</h1>
             </HeroBanner>
             <HomePage>
                 <InterestsCard>

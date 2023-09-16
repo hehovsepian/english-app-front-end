@@ -9,15 +9,13 @@ const Navigation = styled.nav`
     padding-left:24px;
     display:flex;
     flex-direction:column;
-
-    a{
-        color:white;
-        text-decoration:none;
-        margin:18px;
-
-        span{
-            margin-left:8px;
-        }
+`
+const NavItem = styled(Link)<{ $active?: boolean}>`
+    text-decoration:none;
+    margin:18px;
+    color: ${props => props.$active ? "white" : "grey"};
+    span{
+        margin-left:8px;
     }
 `
 
@@ -50,14 +48,14 @@ function Sidebar(){
         {
             data.map((item, index)=>{
                 return (
-                    <Link
+                    <NavItem
                         key={index}
                         to={`/${item.name.toLowerCase()}`}
-                        className={location === item.name.toLowerCase() ? 'active' : ''}
+                        $active={location === item.name.toLowerCase() ? true : false}
                     >
                         <i className={`fa-solid fa-${item.icon}`}></i>
                         <span>{item.name}</span>
-                    </Link>
+                    </NavItem>
                 )
             })
         }

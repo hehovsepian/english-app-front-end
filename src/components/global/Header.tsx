@@ -83,17 +83,16 @@ function Header(){
 	const dispatch = useDispatch()
 	const navigate = useNavigate();
 
+	const students = useSelector((state: RootState) => state.students)
+	const user = students.filter(student => student.name === 'Rico Almeida')[0]
+
 	const [showAvatarMenu, setShowAvatarMenu] = useState<boolean>(false)
 
-    const user = {
-        firstName: "Hannah",
-        lastName: "Test"
-    }
 
     const getInitials = () => {
-		if(user){
-			let firstInitial = user.firstName.charAt(0);
-			let lastInitial = user.lastName.charAt(0);
+		if(user.name){
+			let firstInitial = user.name.charAt(0);
+			let lastInitial = user.name.split(' ')[1].charAt(0);
 			return firstInitial + lastInitial
 		}else{
 			return 'TE'

@@ -5,6 +5,7 @@ import { Instructors } from "../data/courses_data"
 import carlosMachado from '../../images/studentPhotos/Carlos_Machado.png'
 import yinGuo from '../../images/studentPhotos/Yin_Guo.png'
 import nadjaSaller from '../../images/studentPhotos/Nadja_Saller.png'
+import ricoAlmeida from '../../images/studentPhotos/Rico_Almeida.png'
 
 export enum Countries {
     brazil = 'Brazil',
@@ -42,7 +43,7 @@ export const students:Student[] = [
         location: 'Madrid, Spain',
         country: Countries.spain,
         level: 'A1',
-        course: 'A1 General English (Young learners)',
+        course: 'A1 General English (Adults)',
         instructor: Instructors.marcia,
         nativeLanguage: NativeLanguages.spanish
     },
@@ -52,7 +53,7 @@ export const students:Student[] = [
         location: 'Beijing, China',
         country: Countries.china,
         level: 'A1',
-        course: 'A1 General English (Adults)',
+        course: 'A1 General English (Young learners)',
         instructor: Instructors.steven,
         nativeLanguage: NativeLanguages.mandarin
     },
@@ -65,5 +66,15 @@ export const students:Student[] = [
         course: 'B1+ General English (Adults)',
         instructor: Instructors.ximena,
         nativeLanguage: NativeLanguages.german
+    },
+    {
+        profilePhoto: ricoAlmeida,
+        name: 'Rico Almeida',
+        location: 'Nova Iguaçu, Brazil',
+        country: Countries.brazil,
+        level: 'B1+',
+        course: 'B1+ General English (Adults)',
+        instructor: Instructors.ximena,
+        nativeLanguage: NativeLanguages.portuguese
     }
 ]

@@ -4,6 +4,7 @@ import Header from "../global/Header"
 import Home from "../home/Home"
 import Courses from "../courses/Courses"
 import Students from "../students/Students"
+import Profile from "../profile/Profile"
 import { Navigate } from "react-router-dom";
 import styled from 'styled-components';
 import type { RootState } from '../../redux/store'
@@ -20,7 +21,7 @@ const Main = styled.div`
 `
 
 interface PageWrapperProps {
-    page: "home" | "courses" | "students",
+    page: "home" | "courses" | "students" | "profile"
 }
 
 function PageWrapper({ page }: PageWrapperProps){
@@ -38,6 +39,9 @@ function PageWrapper({ page }: PageWrapperProps){
             case "students":
                 return <Students/>
               break;
+            case "profile":
+                return <Profile/>
+              break;  
             default:
                 return <Home/>
           }
