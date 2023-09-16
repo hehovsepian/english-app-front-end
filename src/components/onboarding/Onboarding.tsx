@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {useNavigate, useLocation, useSearchParams} from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux";
-import styled from 'styled-components';
-import { Button } from "../global/GlobalStyles"
 import type { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from "react-redux";
+import { saveInterests } from '../../redux/interestsSlice'
 import { Navigate } from "react-router-dom";
+import styled from 'styled-components';
+import { Button, InterestsList, Interest } from "../global/GlobalStyles"
+
 
 //images
 import arrowLeft from "../../images/icons/arrow-left-blue.svg";
@@ -18,9 +20,11 @@ const OnboardingPage = styled.div`
     padding:16px;
     height:100vh;
     overflow:hidden;
+
     p.teal{
         color: blue;
     }
+    
     .icon-button{
         margin:50px 0 16px 0;
         display: flex;
@@ -177,34 +181,6 @@ const OnboardingPage = styled.div`
             margin-right:30px;
         }
     }
-
-    .interests{
-        display:flex;
-        flex-wrap:wrap;
-        gap:12px;
-        .tag, .tag.border, .tag.dark-muted{
-            height:32px;
-            cursor: pointer;
-            white-space: nowrap;
-            text-align:center;
-            padding: 7px 12px 0px 12px;
-            line-height: 18px;
-            font-size: 14px;
-            font-weight:500;
-            border-radius: 4px;
-            box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25) inset;
-        }
-        .tag.border{
-            background-color: #FEFEFE;
-            border: 1px solid #DDE3EE;
-            color: #151515;
-        }
-        .tag.dark-muted{
-            border:1px solid #003057;
-            background: #003057;
-            color: #FEFEFE;
-        }
-    }
 `
 
 const PrimaryButton = styled(Button)`
@@ -212,14 +188,12 @@ const PrimaryButton = styled(Button)`
     margin:24px 0;
 `
 
-interface OnboardingProps {
-
-}
-
-const Onboarding = ({  }: OnboardingProps) => {
+const Onboarding = () => {
 
     const signedin = useSelector((state: RootState) => state.auth.signedin)
+    const interests = useSelector((state: RootState) => state.interests.interests)
 
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -228,15 +202,15 @@ const Onboarding = ({  }: OnboardingProps) => {
 
     const [step, setStep] = useState<number>(1)
     const [goal, setGoal] = useState<string>('')
-    const [day, setDay] = useState<string>('')
-    const [month, setMonth] = useState<string>('')
-    const [year, setYear] = useState<string>('')
+    const [day, setDay] = useState<string>('day')
+    const [month, setMonth] = useState<string>('month')
+    const [year, setYear] = useState<string>('year')
     const [selectedInterests, setSelectedInterests] = useState<string[]>([])
 
     const days = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31st']
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const years = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030']
-    const interests = ['🧗‍♀️ Outdoor activities', '⚽️ Sports', '🫀 Health', '🎸 Music', '🎭 Performing arts', '🎨 Creative arts', '📸 Photography', '🍿 Film & cinema', '📚 Reading', '🔬Science', '🌿 Nature', '🏰 History', '🤲 Volunteering', '✍️ Writing', '🔭 Astronomy', '💡 Personal development', '🧘‍♂️ Wellbeing', '🏎 Cars & racing', '✈️ Travel', '🧑‍🍳 Cooking', '🌮 Food', '🏡 Interior design', '👗 Fashion']
+    //const interests = ['🧗‍♀️ Outdoor activities', '⚽️ Sports', '🫀 Health', '🎸 Music', '🎭 Performing arts', '🎨 Creative arts', '📸 Photography', '🍿 Film & cinema', '📚 Reading', '🔬Science', '🌿 Nature', '🏰 History', '🤲 Volunteering', '✍️ Writing', '🔭 Astronomy', '💡 Personal development', '🧘‍♂️ Wellbeing', '🏎 Cars & racing', '✈️ Travel', '🧑‍🍳 Cooking', '🌮 Food', '🏡 Interior design', '👗 Fashion']
 
     useEffect(()=>{
         setStep(Number(searchParams.get("step")))
@@ -258,6 +232,7 @@ const Onboarding = ({  }: OnboardingProps) => {
 
     const handleNext = () => {
         if(step === totalSteps){
+            dispatch(saveInterests(selectedInterests))
             navigate("/home")
         }else{
             navigate(`/onboarding?step=${step+1}`)
@@ -305,7 +280,7 @@ const Onboarding = ({  }: OnboardingProps) => {
                                             setDay(e.target.value)
                                         }}
                                     >
-                                        <option value="day" disabled selected>Day</option>
+                                        <option value="day" disabled>Day</option>
                                         {
                                             days.map((day, index)=>{
                                                 return <option key={index} value={day}>{day}</option>
@@ -324,7 +299,7 @@ const Onboarding = ({  }: OnboardingProps) => {
                                             setMonth(e.target.value)
                                         }}
                                     >
-                                        <option value="month" disabled selected>Month</option>
+                                        <option value="month" disabled>Month</option>
                                         {
                                             months.map((month, index)=>{
                                                 return <option key={index} value={month}>{month}</option>
@@ -343,7 +318,7 @@ const Onboarding = ({  }: OnboardingProps) => {
                                             setYear(e.target.value)
                                         }}
                                     >
-                                        <option value="year" disabled selected>Year</option>
+                                        <option value="year" disabled>Year</option>
                                         {
                                             years.map((year, index)=>{
                                                 return <option key={index} value={year}>{year}</option>
@@ -359,7 +334,7 @@ const Onboarding = ({  }: OnboardingProps) => {
                         onClick={handleNext}
                         type="button"
                         $primary
-                        $disabled={goal && day && month && year ? false : true}
+                        $disabled={goal && day != 'day' && month != 'month' && year != 'year' ? false : true}
                     >
                         Set my goal
                     </PrimaryButton>
@@ -426,21 +401,22 @@ const Onboarding = ({  }: OnboardingProps) => {
                 <h2>Your interests</h2>
                 <p>For personalized content (that we think you'll love!), let us know what you're interested in</p>
                 {/* <form> */}
-                    <div className="interests">
+                    <InterestsList>
                         {
                             interests.map((interest, index)=>{
                                 return (
-                                    <span 
+                                    <Interest 
                                         key={`interest-${index}`} 
-                                        className={`tag ${selectedInterests.includes(interest) ? 'dark-muted': 'border'}`}
+                                        $button
+                                        $selected={selectedInterests.includes(interest) ? true : false}
                                         onClick={()=>{handleSelectInterest(interest)}}
                                     >
                                             {interest}
-                                    </span>
+                                    </Interest>
                                 )
                             })
                         }
-                    </div>
+                    </InterestsList>
                     <PrimaryButton
                         onClick={handleNext}
                         type="button"

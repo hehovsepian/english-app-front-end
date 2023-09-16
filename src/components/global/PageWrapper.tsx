@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 const Main = styled.div`
-    background-color: white;
+    background-color: #F7F9FD;
     width:100%;
     border-radius: 32px 0 0 0;
     height:100vh;
@@ -26,10 +26,6 @@ interface PageWrapperProps {
 function PageWrapper({ page }: PageWrapperProps){
 
     const signedin = useSelector((state: RootState) => state.auth.signedin)
-
-    useEffect(()=>{
-        console.log(signedin)
-    },[signedin])
 
     const getPage = () => {
         switch(page) {

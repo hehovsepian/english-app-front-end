@@ -87,7 +87,7 @@ function SignIn(){
     )
     }else{
         return (
-             <Navigate to="/home" />
+             <Navigate to="/onboarding?step=1" />
         )
     }
 }

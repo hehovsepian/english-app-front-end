@@ -2,12 +2,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './authSlice'
 import coursesReducer from './coursesSlice'
 import studentsReducer from './studentsSlice'
+import interestsReducer from './interestsSlice'
+import { interests } from './data/interests_data'
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     courses:coursesReducer,
-    students: studentsReducer
+    students: studentsReducer,
+    interests: interestsReducer
   },
 })
 

@@ -1,6 +1,9 @@
 :root{
   --blue-gradient-vertical: linear-gradient(172deg, #0CD6CB 0%, #597FFF 100%);
   --primary-font-family: 'Open Sans';
+
+  --teal: #0CC0AD;
+  --border-color: #DDE3EE;
 }
 
 *{
@@ -30,6 +33,10 @@ button{
     background: var(--blue-gradient-vertical);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.bold{
+  font-weight:600;
 }
 
 
