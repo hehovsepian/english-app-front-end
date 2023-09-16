@@ -1,4 +1,7 @@
+import {useEffect} from 'react'
 import styled from 'styled-components';
+import type { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
 
 const HeroBanner = styled.div`
     background: linear-gradient(31deg, #05112A 0%, #1A2538 51.87%, #2A3B5B 100%);
@@ -10,6 +13,12 @@ const HeroBanner = styled.div`
 
 
 function Home(){
+
+    const user = useSelector((state: RootState) => state.auth.user)
+
+    useEffect(()=>{
+        console.log(user)
+    },[])
 
     return <>
        <HeroBanner>

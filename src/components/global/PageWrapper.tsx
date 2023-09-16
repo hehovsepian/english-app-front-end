@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Sidebar from "../global/Sidebar"
 import Header from "../global/Header"
 import Home from "../home/Home"
@@ -29,7 +29,7 @@ function PageWrapper({ page }: PageWrapperProps){
 
     useEffect(()=>{
         console.log(signedin)
-    },[])
+    },[signedin])
 
     const getPage = () => {
         switch(page) {
@@ -47,7 +47,7 @@ function PageWrapper({ page }: PageWrapperProps){
           }
     }
 
-    if(signedin === true){
+    if(signedin){
         return (
             <>
                 <Sidebar/>

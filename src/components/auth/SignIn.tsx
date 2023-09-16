@@ -1,5 +1,5 @@
-import {useEffect} from 'react'
-import { useNavigate } from "react-router-dom";
+import {useEffect, useRef} from 'react'
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
@@ -43,12 +43,17 @@ function SignIn(){
 
     const signedin = useSelector((state: RootState) => state.auth.signedin)
 
+    const emailRef = useRef<HTMLInputElement | null>(null)
+
     const handleSubmitSignin = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(signin())
-        navigate("/onboarding?step=1");
+        if(emailRef.current){
+            dispatch(signin(emailRef.current.value))
+        }
+        navigate("/home");
     }
 
+    if(!signedin){
     return (
         <AuthPage>
             <Form onSubmit={handleSubmitSignin}>
@@ -59,6 +64,7 @@ function SignIn(){
                         id="email"
                         name="email"
                         type="text"
+                        ref={emailRef}
                     />
                 </Input>
                 <Input>
@@ -79,6 +85,11 @@ function SignIn(){
             </Form>
         </AuthPage>
     )
+    }else{
+        return (
+             <Navigate to="/home" />
+        )
+    }
 }
 
 export default SignIn

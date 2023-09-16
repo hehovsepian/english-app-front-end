@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
+import type { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { signout } from '../../redux/authSlice'
 
 //images
 import schoolLogo from "../../images/school-logo.svg"
@@ -77,6 +80,7 @@ const AvatarMenu = styled.div`
 
 function Header(){
 
+	const dispatch = useDispatch()
 	const navigate = useNavigate();
 
 	const [showAvatarMenu, setShowAvatarMenu] = useState<boolean>(false)
@@ -95,6 +99,11 @@ function Header(){
 			return 'TE'
 		}
 	}
+
+	const handleSignOut = (e:React.MouseEvent<HTMLElement>) => {
+		e.preventDefault()
+        dispatch(signout())
+    }
 
     return(
 		<StyledHeader>
@@ -120,9 +129,7 @@ function Header(){
 							<button onClick={()=>{
 								navigate('/profile')
 							}}>Profile</button>
-							<button onClick={()=>{
-								navigate('/sign-out')
-							}}>Log out</button>
+							<button onClick={handleSignOut}>Log out</button>
 						</AvatarMenu> : null
 					}
 				</RightActions>

@@ -2,23 +2,28 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface AuthState {
-  signedin: boolean
+  signedin: boolean,
+  user: string | null
 }
 
 const initialState: AuthState = {
-  signedin: false,
+  signedin: localStorage.getItem('user') ? true : false,
+  user: localStorage.getItem('user')
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signin: (state) => {
+    signin: (state, action: PayloadAction<string>) => {
       state.signedin = true
-      console.log(state.signedin)
+      state.user = action.payload
+      localStorage.setItem('user', action.payload);
     },
     signout: (state) => {
       state.signedin = false
+      state.user = null
+      localStorage.removeItem('user');
     },
   },
 })
