@@ -54,14 +54,16 @@ const Card = styled.div<{ $profile?: boolean}>`
 `
 
 interface UserCardProps {
+    key?:number | null,
     user: Student,
-    profile: boolean
+    profile?: boolean | null
 }
 
-function UserCard({ user, profile }: UserCardProps){
+function UserCard({ key, user, profile }: UserCardProps){
 
     return (
         <Card
+            key={key}
             $profile={profile ? true : false}
         >
                 <img

@@ -39,4 +39,8 @@ button{
   font-weight:600;
 }
 
+.recharts-surface{
+  overflow:visible;
+}
+
 

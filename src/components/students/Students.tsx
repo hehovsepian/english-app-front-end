@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Page, Button } from "../global/GlobalStyles"
+import UserCard from "../global/UserCard"
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { Student } from "../../redux/data/students_data"
@@ -293,15 +294,16 @@ function Students(){
                 {
                     filterStudents(searchStudents(students)).map((student, index)=>{
                         return(
-                            <StudentCard key={index}>
-                                    <img
-                                        src={student.profilePhoto}
-                                    />
-                                    <p className='name'>{student.name}</p>
-                                    <p className='location'><img src={location}/>{student.location}</p>
-                                    <p className='level'>{student.level}</p>
-                                    <p className='course'>{student.course}</p>
-                            </StudentCard>
+                            <UserCard user={student} key={index}/>
+                            // <StudentCard key={index}>
+                            //         <img
+                            //             src={student.profilePhoto}
+                            //         />
+                            //         <p className='name'>{student.name}</p>
+                            //         <p className='location'><img src={location}/>{student.location}</p>
+                            //         <p className='level'>{student.level}</p>
+                            //         <p className='course'>{student.course}</p>
+                            // </StudentCard>
                         )
                     })
                 }

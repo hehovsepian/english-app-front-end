@@ -1,6 +1,7 @@
 import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import UserCard from '../global/UserCard'
+import LearningTimeline from './LearningTimeline'
 
 function Profile(){
 
@@ -12,6 +13,7 @@ function Profile(){
             <UserCard 
                 user={user} profile={true}
             />
+            <LearningTimeline/>
         </>
     )
 
