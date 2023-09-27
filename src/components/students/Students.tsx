@@ -139,54 +139,6 @@ const StudentCardList = styled.ul`
    gap:24px;
 `
 
-const StudentCard = styled.div`
-   background: #122142;    
-   color:white;
-   padding:36px 24px;
-   width:300px;
-   border-radius:8px;
-   text-align:center;
-   cursor:pointer;
-   &>img{
-    width:100px;
-    height:100px;
-   }
-   .name{
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 28px;
-   }
-   .location{
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        color:#0CC0AD;
-        font-weight: 500;
-        img{
-            margin-right:8px;
-        }
-   }
-   .level{
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 24px;
-        margin:0;
-   }
-   .course{
-        font-weight: 400;
-        color: $textMuted;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 24px;
-        margin:0;
-        color:#989BA3;
-   }
-   &:hover{
-    background:#0b1a3b;
-   }
-`
-
 function Students(){
 
     const students = useSelector((state: RootState) => state.students)

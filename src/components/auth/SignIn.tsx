@@ -50,7 +50,7 @@ function SignIn(){
         if(emailRef.current){
             dispatch(signin(emailRef.current.value))
         }
-        navigate("/home");
+        navigate("/onboarding?step=1");
     }
 
     if(!signedin){
@@ -63,7 +63,8 @@ function SignIn(){
                     <input
                         id="email"
                         name="email"
-                        type="text"
+                        type="email"
+                        required
                         ref={emailRef}
                     />
                 </Input>
@@ -72,7 +73,8 @@ function SignIn(){
                     <input
                         id="password"
                         name="password"
-                        type="text"
+                        type="password"
+                        required
                     />
                 </Input>
                 <p>or <a className='gradient-text'>create an account</a></p>

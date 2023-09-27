@@ -9,6 +9,7 @@ const Card = styled.div<{ $profile?: boolean}>`
    color:white;
    padding:36px 24px;
    width:300px;
+   height:400px;
    border-radius:8px;
    text-align:center;
    cursor:${props => props.$profile? "auto" : "pointer"};
